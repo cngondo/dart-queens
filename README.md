@@ -3,6 +3,11 @@
 N-queens sample solution using dart
 
 
+## Tools
+- IntelliJ
+- DartSDK V2.14
+
+
 ## Resources Used
 
 - Hack Reactor NQueens Sprint (for conceptualizing the challenge)
