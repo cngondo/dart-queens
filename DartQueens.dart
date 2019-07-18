@@ -1,7 +1,6 @@
 
-
 void main(){
- DartQueens();
+  DartQueens().enumerate(6);
 }
 
 class DartQueens{
@@ -9,7 +8,7 @@ class DartQueens{
   int solutionCount = 0;
 
   // checks for conflict on the rows and the columns
-  bool hasNoConflict(List q, int n){
+  hasNoConflict(List q, int n){
     for (int i=0; i<n; i++) {
       // check for column conflict
       if (q[i] == q[n]) {
@@ -27,22 +26,38 @@ class DartQueens{
     return true;
   }
 
+  countSolutions(){
+    print(solutionCount);
 
-  void findSolution(int rowsLeft, solutionCount){
+    return solutionCount;
+  }
+
+  // permutate the solutions by passing the board
+  enumerate(int N) {
+    var a = new List(N);
+    findSolution(a, 0);
+  }
+
+  //
+  findSolution(List q, int n){
 
     // if all rows are exhausted
-    if(rowsLeft == 0){
+    if(n == q.length){
       // increase the solution count
       solutionCount++;
+      countSolutions();
       // halt the recursive call
       return;
     }
-
     // iterate over a possible solution
+    for (int i = 0; i < q.length; i++) {
       // place a piece
       // recurse into remaining problem
-      findSolution(rowsLeft - 1, solutionCount);
-      // unplace a piece
+      q[n] = i;
+      if (hasNoConflict(q, n)){
+        findSolution(q, n+1);
+      }
+    }
   }
 
 }
